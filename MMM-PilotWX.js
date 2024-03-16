@@ -38,19 +38,12 @@ Module.register('MMM-PilotWX', {
     Log.info('Starting module: ' + this.name)
 
     // Set locale.
-    ;(this.url =
-      'https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=' +
-      this.config.ICAO +
-      '&hoursBeforeNow=1'),
-      (this.url =
-        this.url +
-        '&mostRecentForEachStation=' +
-        this.config.mostRecentPerStation)
-    console.log('URL: ' + this.url)
-    this.WISP = []
-    this.activeItem = 0
-    this.rotateInterval = null
-    this.scheduleUpdate()
+    ;this.url = `https://aviationweather.gov/api/data/metar?ids=${this.config.ICAO}&format=xml&taf=true&hours=1&date=2024-03-10T23%3A44%3A22Z`;
+console.log('URL: ' + this.url);
+this.WISP = [];
+this.activeItem = 0;
+this.rotateInterval = null;
+this.scheduleUpdate();
   },
 
   getDom: function () {
